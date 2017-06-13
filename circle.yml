@@ -14,7 +14,7 @@ test:
 
 deployment:
   production:
-    branch: deployment
+    branch: deploy
     commands:
       - heroku container:push web
 
