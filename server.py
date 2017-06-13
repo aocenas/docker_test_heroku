@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 @app.route('/test')
 def score():
-    return jsonify({'message': 'hello'})
+    return jsonify({'message': 'hello world'})
 
 
 if __name__ == '__main__':
