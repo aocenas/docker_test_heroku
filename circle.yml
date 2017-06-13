@@ -1,0 +1,16 @@
+machine:
+  python:
+    version: 3.6.0
+  environment:
+    FLASK_APP: server.py
+
+    # setting locale otherwise flask won't start http://click.pocoo.org/5/python3/
+    LC_ALL: C.UTF-8
+    LANG: C.UTF-8
+
+deployment:
+  production:
+    branch: deployment
+    commands:
+      - heroku container:push web
+
