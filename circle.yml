@@ -8,6 +8,10 @@ machine:
     LC_ALL: C.UTF-8
     LANG: C.UTF-8
 
+test:
+  override:
+    - python -m unittest discover --verbose --start-directory test --top-level-directory .
+
 deployment:
   production:
     branch: deployment
