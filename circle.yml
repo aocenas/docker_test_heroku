@@ -13,7 +13,7 @@ machine:
     LANG: C.UTF-8
 
 dependencies:
-  override:
+  post:
     - docker build --rm=false -t registry.heroku.com/docker-mc-docker/web .
 
 test:
