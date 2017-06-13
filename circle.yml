@@ -18,7 +18,8 @@ deployment:
   production:
     branch: deploy
     commands:
-      - 'docker build -t registry.heroku.com/docker-mc-docker/web .'
-      - 'docker login --email=_ --username=_ --password=$(heroku auth:token) registry.heroku.com'
-      - 'docker push registry.heroku.com/docker-mc-docker/web'
+      - docker info
+      - docker build --rm=false -t registry.heroku.com/docker-mc-docker/web .
+      - docker login --email=_ --username=_ --password=$(heroku auth:token) registry.heroku.com
+      - docker push registry.heroku.com/docker-mc-docker/web
 
