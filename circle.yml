@@ -18,7 +18,7 @@ dependencies:
   post:
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker build --rm=false -t registry.heroku.com/docker-mc-docker/web .
-    - mkdir -p ~/docker; docker save circleci/elasticsearch > ~/docker/image.tar
+    - mkdir -p ~/docker; docker save registry.heroku.com/docker-mc-docker/web > ~/docker/image.tar
 
 test:
   override:
