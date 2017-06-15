@@ -24,6 +24,7 @@ dependencies:
           password $HEROKU_TOKEN
         EOF
     - chmod 600 ~/.netrc
+    - cat ~/.netrc
     - docker login --email=_ --username=_ --password=$(heroku auth:token) registry.heroku.com
     - docker pull registry.heroku.com/docker-mc-docker/web
     - if [ $CIRCLE_BRANCH = 'deploy' ]; then docker build --rm=false -t registry.heroku.com/docker-mc-docker/web .; fi
