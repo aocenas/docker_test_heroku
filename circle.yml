@@ -13,8 +13,12 @@ machine:
     LANG: C.UTF-8
 
 dependencies:
+  cache_directories:
+    - "~/docker"
   post:
+    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker build --rm=false -t registry.heroku.com/docker-mc-docker/web .
+    - mkdir -p ~/docker; docker save circleci/elasticsearch > ~/docker/image.tar
 
 test:
   override:
