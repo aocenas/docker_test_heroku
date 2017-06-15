@@ -14,6 +14,18 @@ machine:
 
 dependencies:
   post:
+    - |
+        cat >~/.netrc <<EOF
+        machine api.heroku.com
+          login $HEROKU_EMAIL
+          password $HEROKU_TOKEN
+        machine git.heroku.com
+          login $HEROKU_EMAIL
+          password $HEROKU_TOKEN
+        EOF
+    - chmod 600 ~/.netrc
+    - docker login --email=_ --username=_ --password=$(heroku auth:token) registry.heroku.com
+    - docker pull registry.heroku.com/docker-mc-docker/web
     - if [ $CIRCLE_BRANCH = 'deploy' ]; then docker build --rm=false -t registry.heroku.com/docker-mc-docker/web .; fi
 
 test:
@@ -28,6 +40,5 @@ deployment:
   production:
     branch: deploy
     commands:
-      - docker login --email=_ --username=_ --password=$(heroku auth:token) registry.heroku.com
       - docker push registry.heroku.com/docker-mc-docker/web
 
